@@ -7,6 +7,7 @@ import androidx.compose.animation.togetherWith
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Save
 import androidx.compose.material3.*
@@ -19,11 +20,11 @@ import dev.stashy.midilink.model.DeviceFlow
 import dev.stashy.midilink.ui.theme.AppTheme
 
 @Composable
-fun FlowEditor(flow: DeviceFlow, onUpdate: (DeviceFlow) -> Unit) {
+fun FlowEditor(flow: DeviceFlow, onUpdate: (DeviceFlow) -> Unit, onRemove: () -> Unit) {
     var currentNode: FlowNode? by remember { mutableStateOf(null) }
     var editing: Boolean by remember { mutableStateOf(false) }
 
-    Column(Modifier.padding(16.dp).fillMaxSize(), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+    Column(Modifier.padding(16.dp).fillMaxSize(), verticalArrangement = Arrangement.spacedBy(16.dp)) {
         AnimatedContent(editing, transitionSpec = { fadeIn() togetherWith fadeOut() }) {
             when (it) {
                 true -> Row(
@@ -50,6 +51,12 @@ fun FlowEditor(flow: DeviceFlow, onUpdate: (DeviceFlow) -> Unit) {
                     IconButton({ editing = true }) {
                         Icon(Icons.Default.Edit, null)
                     }
+                    Spacer(Modifier.weight(1f))
+                    TextButton(onRemove) {
+                        Icon(Icons.Default.Delete, null)
+                        Spacer(Modifier.width(8.dp))
+                        Text("Remove")
+                    }
                 }
             }
 
@@ -75,6 +82,6 @@ fun FlowEditor(flow: DeviceFlow, onUpdate: (DeviceFlow) -> Unit) {
 @Composable
 private fun FlowEditorPreview() {
     AppTheme {
-        FlowEditor(DeviceFlow("Test")) {}
+        FlowEditor(DeviceFlow("Test"), {}, {})
     }
 }

@@ -81,11 +81,14 @@ fun WindowScope.App(onCloseRequest: () -> Unit, windowState: WindowState) {
                     ) { screen ->
                         when (screen) {
                             is Screen.Home -> HomeScreen(deviceFlows, onFlowClick = { currentScreen = Screen.Flow(it) })
-                            is Screen.Flow -> FlowEditor(screen.flow) { newFlow ->
+                            is Screen.Flow -> FlowEditor(screen.flow, onUpdate = { newFlow ->
                                 val index = deviceFlows.indexOf(screen.flow)
                                 deviceFlows.removeAt(index)
                                 deviceFlows.add(index, newFlow)
-                            }
+                            }, onRemove = {
+                                deviceFlows.remove(screen.flow)
+                                currentScreen = Screen.Home
+                            })
 
                             is Screen.Settings -> SettingsScreen { settings = it }
                         }

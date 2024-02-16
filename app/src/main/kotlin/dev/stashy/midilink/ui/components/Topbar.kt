@@ -62,7 +62,7 @@ fun WindowScope.Topbar(
                     }
                     Spacer(Modifier.width(4.dp))
                     Text(BuildConfig.APP_NAME)
-                    Text(BuildConfig.VERSION, fontSize = 0.75.em)
+                    Text(BuildConfig.VERSION, fontSize = 0.75.em, color = LocalContentColor.current.copy(alpha = 0.7f))
                 }
             }
         }
