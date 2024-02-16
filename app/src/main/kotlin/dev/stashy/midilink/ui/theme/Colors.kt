@@ -5,3 +5,6 @@ import androidx.compose.ui.graphics.compositeOver
 
 val ColorScheme.surfaceAlt
     get() = onSurface.copy(alpha = 0.1f).compositeOver(surface)
+val ColorScheme.border
+    get() = onBackground.copy(alpha = 0.1f).compositeOver(background)
+

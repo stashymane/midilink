@@ -3,6 +3,7 @@ package dev.stashy.midilink
 import androidx.compose.animation.*
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -24,11 +25,13 @@ import dev.stashy.midilink.model.LocalSettings
 import dev.stashy.midilink.model.Settings
 import dev.stashy.midilink.ui.components.Sidebar
 import dev.stashy.midilink.ui.components.Topbar
+import dev.stashy.midilink.ui.components.util.LayoutDivider
 import dev.stashy.midilink.ui.screens.FlowEditor
 import dev.stashy.midilink.ui.screens.HomeScreen
 import dev.stashy.midilink.ui.screens.Screen
 import dev.stashy.midilink.ui.screens.SettingsScreen
 import dev.stashy.midilink.ui.theme.AppTheme
+import dev.stashy.midilink.ui.theme.border
 import java.awt.Dimension
 
 @Composable
@@ -47,14 +50,17 @@ fun WindowScope.App(onCloseRequest: () -> Unit, windowState: WindowState) {
         CompositionLocalProvider(LocalSettings provides settings) {
             Scaffold(
                 modifier = Modifier.clip(windowShape)
-                    .border(1.dp, MaterialTheme.colorScheme.onBackground.copy(alpha = 0.1f), windowShape),
+                    .border(1.dp, MaterialTheme.colorScheme.border, windowShape),
                 topBar = {
-                    Topbar(
-                        currentScreen != Screen.Home,
-                        windowState,
-                        { currentScreen = Screen.Home },
-                        onCloseRequest
-                    )
+                    Column {
+                        Topbar(
+                            currentScreen != Screen.Home,
+                            windowState,
+                            { currentScreen = Screen.Home },
+                            onCloseRequest
+                        )
+                        LayoutDivider()
+                    }
                 },
                 snackbarHost = { SnackbarHost(snackbarState) }
             ) { paddingValues ->
@@ -67,6 +73,8 @@ fun WindowScope.App(onCloseRequest: () -> Unit, windowState: WindowState) {
                         { deviceFlows += DeviceFlow("Flow") },
                         width = sidebarWidth
                     )
+
+                    LayoutDivider()
 
                     AnimatedContent(currentScreen,
                         transitionSpec = { fadeIn() + slideInVertically { -20 } togetherWith fadeOut() + slideOutVertically { 20 } }
