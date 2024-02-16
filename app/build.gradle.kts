@@ -8,6 +8,7 @@ plugins {
 
 dependencies {
     implementation(project(":api"))
+    implementation(project(":modules:midi"))
 
     implementation(libs.ktx.serialization.json)
     implementation(libs.midifunk.events)

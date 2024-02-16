@@ -1,6 +1,6 @@
 package dev.stashy.midilink.ui.screens
 
-import dev.stashy.midilink.flow.DeviceFlow
+import dev.stashy.midilink.model.DeviceFlow
 
 sealed class Screen() {
     data object Home : Screen()

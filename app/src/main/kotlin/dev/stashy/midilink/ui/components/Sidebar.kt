@@ -24,7 +24,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
-import dev.stashy.midilink.flow.DeviceFlow
+import dev.stashy.midilink.model.DeviceFlow
 import dev.stashy.midilink.ui.screens.Screen
 import dev.stashy.midilink.ui.theme.AppTheme
 import dev.stashy.midilink.ui.theme.surfaceAlt

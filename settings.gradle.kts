@@ -20,4 +20,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "midilink"
-include(":app", ":api")
+include(":app", ":api", ":modules:midi")

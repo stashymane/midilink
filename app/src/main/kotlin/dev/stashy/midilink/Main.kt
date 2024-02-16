@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.*
 import dev.stashy.midilink.model.LocalSettings
 import dev.stashy.midilink.model.Settings
-import dev.stashy.midilink.flow.DeviceFlow
+import dev.stashy.midilink.model.DeviceFlow
 import dev.stashy.midilink.ui.components.Sidebar
 import dev.stashy.midilink.ui.components.Topbar
 import dev.stashy.midilink.ui.screens.FlowEditor

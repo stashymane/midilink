@@ -1,4 +1,4 @@
-package dev.stashy.midilink.flow
+package dev.stashy.midilink.model
 
 import dev.stashy.midifunk.events.MidiData
 import dev.stashy.midilink.flow.input.FlowInput

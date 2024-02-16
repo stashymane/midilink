@@ -1,7 +1,8 @@
-package dev.stashy.midilink.flow.output
+package dev.stashy.midilink.module.midi.nodes
 
 import dev.stashy.midifunk.device.MidiDevice
 import dev.stashy.midifunk.events.MidiData
+import dev.stashy.midilink.flow.output.FlowOutput
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.SendChannel
 

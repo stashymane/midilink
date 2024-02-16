@@ -9,7 +9,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import dev.stashy.midifunk.device.MidiDevice
-import dev.stashy.midilink.flow.DeviceFlow
+import dev.stashy.midilink.model.DeviceFlow
 import dev.stashy.midilink.ui.components.Item
 import dev.stashy.midilink.ui.components.ItemDropdown
 import dev.stashy.midilink.ui.theme.AppTheme
