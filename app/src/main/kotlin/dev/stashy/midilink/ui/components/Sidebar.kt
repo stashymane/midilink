@@ -27,7 +27,6 @@ import androidx.compose.ui.unit.em
 import dev.stashy.midilink.model.DeviceFlow
 import dev.stashy.midilink.ui.screens.Screen
 import dev.stashy.midilink.ui.theme.AppTheme
-import dev.stashy.midilink.ui.theme.surfaceAlt
 
 @Composable
 fun Sidebar(
@@ -41,7 +40,7 @@ fun Sidebar(
 ) {
     val listState = rememberLazyListState()
 
-    Column(modifier.width(width).fillMaxHeight().background(MaterialTheme.colorScheme.surfaceAlt)) {
+    Column(modifier.width(width).fillMaxHeight()) {
         Row(
             Modifier.fillMaxWidth().padding(start = 16.dp),
             horizontalArrangement = Arrangement.SpaceBetween,

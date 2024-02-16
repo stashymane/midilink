@@ -2,12 +2,14 @@ package dev.stashy.midilink.ui.components
 
 import androidx.compose.animation.*
 import androidx.compose.desktop.ui.tooling.preview.Preview
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.window.WindowDraggableArea
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
-import androidx.compose.material3.*
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -18,7 +20,6 @@ import androidx.compose.ui.window.WindowScope
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.rememberWindowState
 import dev.stashy.midilink.ui.theme.AppTheme
-import dev.stashy.midilink.ui.theme.surfaceAlt
 import dev.stashy.midilink.ui.util.toggleMaximized
 import dev.stashy.midilink.ui.util.toggleMinimized
 
@@ -30,9 +31,9 @@ fun WindowScope.Topbar(
     onBack: () -> Unit = {},
     onClose: () -> Unit = {}
 ) {
-    val height = 48.dp
+    val height = 42.dp
 
-    Row(modifier = Modifier.height(height).background(MaterialTheme.colorScheme.surfaceAlt)) {
+    Row(modifier = Modifier.height(height)) {
         Box(Modifier.weight(1f).fillMaxHeight()) {
             WindowDraggableArea(
                 modifier = Modifier.matchParentSize()
