@@ -1,29 +1,29 @@
 package dev.stashy.midilink.ui.components
 
-import androidx.compose.animation.*
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.togetherWith
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.window.WindowDraggableArea
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.window.WindowScope
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.rememberWindowState
 import dev.stashy.midilink.ui.theme.AppTheme
+import dev.stashy.midilink.ui.theme.appear
+import dev.stashy.midilink.ui.theme.disappear
 import dev.stashy.midilink.ui.util.toggleMaximized
 import dev.stashy.midilink.ui.util.toggleMinimized
 
-@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun WindowScope.Topbar(
     isBackVisible: Boolean,
@@ -35,17 +35,18 @@ fun WindowScope.Topbar(
 
     Row(modifier = Modifier.height(height)) {
         Box(Modifier.weight(1f).fillMaxHeight()) {
-            WindowDraggableArea(
-                modifier = Modifier.matchParentSize()
-            ) {
+            WindowDraggableArea(modifier = Modifier.matchParentSize()) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    modifier = Modifier.fillMaxHeight().padding(start = 16.dp)
+                    modifier = Modifier.fillMaxHeight().padding(start = 8.dp)
                 ) {
-                    Box(Modifier.width(height).height(height), contentAlignment = Alignment.Center) {
+                    Box(
+                        Modifier.width(height).height(height),
+                        contentAlignment = Alignment.Center
+                    ) {
                         AnimatedContent(isBackVisible, modifier = Modifier.matchParentSize(), transitionSpec = {
-                            fadeIn() + scaleIn(initialScale = 0.8f) togetherWith fadeOut() + scaleOut(targetScale = 0.8f)
+                            appear() togetherWith disappear()
                         }) {
                             if (it) {
                                 IconButton(onBack) {
@@ -65,19 +66,24 @@ fun WindowScope.Topbar(
             }
         }
 
-        val buttonModifier = Modifier.fillMaxHeight()
-        val buttonShape = RectangleShape
-        val iconModifier = Modifier.size(20.dp)
+        WindowControlButton({ windowState.toggleMinimized() }, Icons.Default.Minimize)
+        WindowControlButton({ windowState.toggleMaximized() }, Icons.Default.CropSquare)
+        WindowControlButton(onClose, Icons.Default.Close)
+    }
+}
 
-        TextButton({ windowState.toggleMinimized() }, modifier = buttonModifier, shape = buttonShape) {
-            Icon(imageVector = Icons.Default.Minimize, contentDescription = "Minimize", modifier = iconModifier)
-        }
-        TextButton({ windowState.toggleMaximized() }, modifier = buttonModifier, shape = buttonShape) {
-            Icon(imageVector = Icons.Default.CropSquare, contentDescription = "Maximize", modifier = iconModifier)
-        }
-        TextButton(onClose, modifier = buttonModifier, shape = buttonShape) {
-            Icon(imageVector = Icons.Default.Close, contentDescription = "Close", modifier = iconModifier)
-        }
+@Composable
+fun WindowControlButton(onClick: () -> Unit, icon: ImageVector) {
+    TextButton(
+        onClick,
+        Modifier.fillMaxHeight(),
+        shape = RectangleShape,
+        colors = ButtonDefaults.textButtonColors(
+            containerColor = MaterialTheme.colorScheme.background,
+            contentColor = MaterialTheme.colorScheme.onBackground
+        )
+    ) {
+        Icon(imageVector = icon, contentDescription = null, modifier = Modifier.size(20.dp))
     }
 }
 

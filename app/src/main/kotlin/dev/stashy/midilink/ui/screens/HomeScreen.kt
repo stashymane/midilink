@@ -10,11 +10,11 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.em
 import dev.stashy.midilink.model.DeviceFlow
 import dev.stashy.midilink.ui.theme.AppTheme
 
@@ -22,7 +22,7 @@ import dev.stashy.midilink.ui.theme.AppTheme
 @Composable
 fun HomeScreen(flows: List<DeviceFlow>, onFlowClick: (DeviceFlow) -> Unit, modifier: Modifier = Modifier) {
     Column(modifier.fillMaxSize().padding(16.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
-        Text("Your flows", fontSize = 2.em)
+        Text("Your flows", style = MaterialTheme.typography.headlineMedium)
 
         LazyVerticalGrid(
             GridCells.Adaptive(60.dp),

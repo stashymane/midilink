@@ -2,11 +2,13 @@ package dev.stashy.midilink
 
 import androidx.compose.animation.*
 import androidx.compose.desktop.ui.tooling.preview.Preview
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Tune
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -17,9 +19,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.*
+import dev.stashy.midilink.model.DeviceFlow
 import dev.stashy.midilink.model.LocalSettings
 import dev.stashy.midilink.model.Settings
-import dev.stashy.midilink.model.DeviceFlow
 import dev.stashy.midilink.ui.components.Sidebar
 import dev.stashy.midilink.ui.components.Topbar
 import dev.stashy.midilink.ui.screens.FlowEditor
@@ -34,19 +36,18 @@ import java.awt.Dimension
 fun WindowScope.App(onCloseRequest: () -> Unit, windowState: WindowState) {
     var settings by remember { mutableStateOf(Settings()) }
     var currentScreen: Screen by remember { mutableStateOf(Screen.Home) }
+    val snackbarState = remember { SnackbarHostState() }
 
     val deviceFlows: MutableList<DeviceFlow> = remember { mutableStateListOf() }
 
-    var currentColor: Color? by remember { mutableStateOf(null) }
-    val snackbarState = remember { SnackbarHostState() }
-
-    val windowRounding = if (windowState.placement == WindowPlacement.Floating) 16.dp else 0.dp
+    val windowShape = RoundedCornerShape(if (windowState.placement == WindowPlacement.Floating) 16.dp else 0.dp)
     var sidebarWidth by remember { mutableStateOf(200.dp) } //TODO resizable sidebar
 
     AppTheme(seedColor = settings.appColor?.let { Color(it) }, isDark = settings.theme == Settings.Theme.DARK) {
         CompositionLocalProvider(LocalSettings provides settings) {
             Scaffold(
-                modifier = Modifier.clip(RoundedCornerShape(windowRounding)),
+                modifier = Modifier.clip(windowShape)
+                    .border(1.dp, MaterialTheme.colorScheme.onBackground.copy(alpha = 0.1f), windowShape),
                 topBar = {
                     Topbar(
                         currentScreen != Screen.Home,
@@ -71,17 +72,9 @@ fun WindowScope.App(onCloseRequest: () -> Unit, windowState: WindowState) {
                         transitionSpec = { fadeIn() + slideInVertically { -20 } togetherWith fadeOut() + slideOutVertically { 20 } }
                     ) {
                         when (it) {
-                            is Screen.Home -> {
-                                HomeScreen(deviceFlows, onFlowClick = { currentScreen = Screen.Flow(it) })
-                            }
-
-                            is Screen.Flow -> {
-                                FlowEditor(it.flow)
-                            }
-
-                            is Screen.Settings -> {
-                                SettingsScreen { settings = it }
-                            }
+                            is Screen.Home -> HomeScreen(deviceFlows, onFlowClick = { currentScreen = Screen.Flow(it) })
+                            is Screen.Flow -> FlowEditor(it.flow)
+                            is Screen.Settings -> SettingsScreen { settings = it }
                         }
                     }
                 }

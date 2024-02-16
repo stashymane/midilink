@@ -6,10 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -26,8 +23,16 @@ fun SettingsScreen(onUpdate: (Settings) -> Unit = {}) {
     val scrollState = rememberScrollState()
     val settings = LocalSettings.current
 
-    Column(Modifier.padding(16.dp).verticalScroll(scrollState).fillMaxSize()) {
-        FlowRow {
+    Column(
+        Modifier.padding(16.dp).verticalScroll(scrollState).fillMaxSize(),
+        verticalArrangement = Arrangement.spacedBy(32.dp)
+    ) {
+        Text("Settings", style = MaterialTheme.typography.headlineMedium)
+
+        FlowRow(
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
             Column {
                 Text("Theme")
 
@@ -41,7 +46,7 @@ fun SettingsScreen(onUpdate: (Settings) -> Unit = {}) {
             Column {
                 Text("Color")
 
-                Row {
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     listOf(Color.Red, Color.Blue, Color.Green, Color.Magenta, Color.Yellow).forEach {
                         Card(
                             Modifier.size(24.dp).clickable { onUpdate(settings.copy(appColor = it.value)) },
