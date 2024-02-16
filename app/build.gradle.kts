@@ -40,6 +40,10 @@ compose.desktop {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "midilink"
             packageVersion = "1.0.0"
+            windows {
+                shortcut = true
+                upgradeUuid = "e9836584-1ba0-459d-961a-b61b3ba03d8f"
+            }
         }
     }
 }
