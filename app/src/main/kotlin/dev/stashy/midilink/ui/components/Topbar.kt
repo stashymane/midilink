@@ -23,6 +23,7 @@ import dev.stashy.midilink.ui.theme.appear
 import dev.stashy.midilink.ui.theme.disappear
 import dev.stashy.midilink.ui.util.toggleMaximized
 import dev.stashy.midilink.ui.util.toggleMinimized
+import midilink.app.BuildConfig
 
 @Composable
 fun WindowScope.Topbar(
@@ -60,8 +61,8 @@ fun WindowScope.Topbar(
                         }
                     }
                     Spacer(Modifier.width(4.dp))
-                    Text("midilink")
-                    Text("alpha", fontSize = 0.75.em)
+                    Text(BuildConfig.APP_NAME)
+                    Text(BuildConfig.VERSION, fontSize = 0.75.em)
                 }
             }
         }

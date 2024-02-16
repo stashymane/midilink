@@ -4,6 +4,7 @@ plugins {
     kotlin("jvm")
     id("org.jetbrains.compose")
     alias(libs.plugins.serialization)
+    alias(libs.plugins.buildConfig)
 }
 
 dependencies {
@@ -24,6 +25,11 @@ dependencies {
     implementation(libs.materialKolor)
     implementation(libs.kmpalette.core)
     implementation(libs.kmpalette.extensions.resources)
+}
+
+buildConfig {
+    buildConfigField("APP_NAME", rootProject.name)
+    buildConfigField("VERSION", rootProject.version.toString())
 }
 
 compose.desktop {

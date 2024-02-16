@@ -5,9 +5,11 @@ kotlin = "1.9.22"
 midifunk = "0.7.0-SNAPSHOT"
 ktx-coroutines = "1.8.0"
 ktx-serialization-json = "1.6.0"
+buildConfig = "5.3.5"
 
 [plugins]
 serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+buildConfig = { id = "com.github.gmazzo.buildconfig", version.ref = "buildConfig" }
 
 [libraries]
 ktx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "ktx-coroutines" }
