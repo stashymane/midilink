@@ -70,10 +70,15 @@ fun WindowScope.App(onCloseRequest: () -> Unit, windowState: WindowState) {
 
                     AnimatedContent(currentScreen,
                         transitionSpec = { fadeIn() + slideInVertically { -20 } togetherWith fadeOut() + slideOutVertically { 20 } }
-                    ) {
-                        when (it) {
+                    ) { screen ->
+                        when (screen) {
                             is Screen.Home -> HomeScreen(deviceFlows, onFlowClick = { currentScreen = Screen.Flow(it) })
-                            is Screen.Flow -> FlowEditor(it.flow)
+                            is Screen.Flow -> FlowEditor(screen.flow) { newFlow ->
+                                val index = deviceFlows.indexOf(screen.flow)
+                                deviceFlows.removeAt(index)
+                                deviceFlows.add(index, newFlow)
+                            }
+
                             is Screen.Settings -> SettingsScreen { settings = it }
                         }
                     }
