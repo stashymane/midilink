@@ -1,0 +1,21 @@
+[versions]
+materialKolor = "1.4.0-alpha05"
+kmpalette = "3.1.0"
+kotlin = "1.9.22"
+midifunk = "0.7.0-SNAPSHOT"
+ktx-coroutines = "1.8.0"
+ktx-serialization-json = "1.6.0"
+
+[plugins]
+serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+
+[libraries]
+ktx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "ktx-coroutines" }
+ktx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "ktx-serialization-json" }
+
+materialKolor = { module = "com.materialkolor:material-kolor", version.ref = "materialKolor" }
+kmpalette-core = { module = "com.kmpalette:kmpalette-core", version.ref = "kmpalette" }
+kmpalette-extensions-resources = { module = "com.kmpalette:extensions-resources", version.ref = "kmpalette" }
+
+midifunk-events = { module = "dev.stashy.midifunk:events-jvm", version.ref = "midifunk" }
+midifunk-devices = { module = "dev.stashy.midifunk:devices-jvm", version.ref = "midifunk" }
