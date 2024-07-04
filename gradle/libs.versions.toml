@@ -2,14 +2,14 @@
 kotlinx-serialization-json = "1.6.3"
 kotlinx-datetime = "0.6.0-RC.2"
 
-compose-plugin = "1.6.10"
+compose-plugin = "1.7.0-alpha01"
 junit = "4.13.2"
 kotlin = "2.0.0"
 
 midifunk = "0.8.0"
 ktor = "3.0.0-beta-1"
 
-navigation = "2.7.0-alpha07"
+navigation = "2.8.0-alpha08"
 coil = "3.0.0-alpha06"
 haze = "0.6.2"
 materialKolor = "1.7.0"

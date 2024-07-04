@@ -7,10 +7,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.GridView
-import androidx.compose.material.icons.filled.Piano
-import androidx.compose.material.icons.filled.Tune
-import androidx.compose.material.icons.filled.Usb
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -29,6 +26,7 @@ fun DeviceCard(name: String, type: DeviceType, onClick: () -> Unit = {}) {
         DeviceType.KEYBOARD -> Icons.Default.Piano
         DeviceType.MIXER -> Icons.Default.Tune
         DeviceType.GENERIC -> Icons.Default.Usb
+        DeviceType.SYSTEM -> Icons.Default.Computer
     }
 
     TextButton(
