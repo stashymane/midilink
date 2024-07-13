@@ -7,7 +7,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.*
+import androidx.compose.ui.InternalComposeUiApi
+import androidx.compose.ui.LocalSystemTheme
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.SystemTheme
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -28,6 +31,7 @@ import screens.SettingsScreen
 import theme.AppTheme
 import theme.border
 
+@OptIn(InternalComposeUiApi::class)
 @Composable
 fun App() {
     val graphs = buildList {
@@ -37,7 +41,7 @@ fun App() {
     }
     val midiDevices = DeviceManager.list()
 
-    var appSettings by remember { mutableStateOf(AppSettings()) }
+    var appSettings by remember { mutableStateOf(Settings()) }
 
     val controller = rememberNavController()
     val snackbarState = remember { SnackbarHostState() }
@@ -45,7 +49,10 @@ fun App() {
     AppTheme(
         state = rememberDynamicMaterialThemeState(
             seedColor = Color(appSettings.color),
-            isDark = appSettings.isDark
+            isDark = when (appSettings.theme) {
+                Settings.Theme.SYSTEM -> LocalSystemTheme.current == SystemTheme.Dark
+                else -> appSettings.theme == Settings.Theme.DARK
+            }
         )
     ) {
         CompositionLocalProvider(
