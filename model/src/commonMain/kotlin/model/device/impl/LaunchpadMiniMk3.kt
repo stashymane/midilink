@@ -5,8 +5,6 @@ import dev.stashy.midifunk.device.MidiPort
 import model.device.LightingSupport
 
 class LaunchpadMiniMk3 : MidiDevice, LightingSupport { //ModeSupport
-    val names: List<String> = listOf("LPMiniMK3 MIDI", "MIDIOUT2 (LPMiniMK3 MIDI)", "MIDIIN2 (LPMiniMK3 MIDI)")
-
     override fun staticLight(note: UInt, color: UInt) {
         TODO("Not yet implemented")
     }
