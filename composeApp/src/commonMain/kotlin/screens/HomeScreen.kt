@@ -11,7 +11,7 @@ import components.DeviceCard
 import midilink.composeapp.generated.resources.Res
 import midilink.composeapp.generated.resources.devices_none_connected
 import midilink.composeapp.generated.resources.section_devices
-import model.device.DeviceType
+import model.device.DeviceMeta
 import model.device.MidilinkDevice
 import org.jetbrains.compose.resources.stringResource
 
@@ -29,8 +29,8 @@ fun HomeScreen(devices: List<MidilinkDevice>) {
             if (midiDevicesEmpty)
                 Text(stringResource(Res.string.devices_none_connected))
             else
-                devices.filter { it.meta.type != DeviceType.SYSTEM }.forEach {
-                    DeviceCard(it.name, DeviceType.GENERIC) {}
+                devices.filter { it.meta.type != DeviceMeta.Type.SYSTEM }.forEach {
+                    DeviceCard(it.name, it.meta.type) {}
                 }
         }
     }

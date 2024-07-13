@@ -19,7 +19,6 @@ import components.LocalNavController
 import components.LocalSnackbarState
 import components.Sidebar
 import components.Topbar
-import dev.stashy.midifunk.device.MidiDevice
 import model.Graph
 import model.device.DeviceManager
 import screens.EventLogScreen
@@ -31,15 +30,9 @@ import theme.border
 
 @Composable
 fun App() {
-    /* TODO restructure:
-    * pipeline will only consist of variables, not midievents
-    * probably via a map or similar
-    * inputs grouped by device, actions are signals
-    *
-    */
     val graphs = buildList {
         repeat(10) {
-            add(Graph("graph-$it", "Graph #$it", listOf(), listOf()))
+            add(Graph("graph-$it", "Graph #$it", "test", listOf()))
         }
     }
     val midiDevices = DeviceManager.list()

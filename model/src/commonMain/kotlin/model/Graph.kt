@@ -7,7 +7,7 @@ import model.nodes.Node
 data class Graph(
     val id: String,
     val name: String,
-    val inputs: List<String>,
+    val inputId: String,
     val nodes: List<Node>,
     val disabled: Boolean = false
 )

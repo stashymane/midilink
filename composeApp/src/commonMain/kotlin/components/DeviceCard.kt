@@ -15,18 +15,18 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import model.device.DeviceType
+import model.device.DeviceMeta
 import theme.PreviewContainer
 import theme.border
 
 @Composable
-fun DeviceCard(name: String, type: DeviceType, onClick: () -> Unit = {}) {
+fun DeviceCard(name: String, type: DeviceMeta.Type, onClick: () -> Unit = {}) {
     val icon = when (type) {
-        DeviceType.GRID -> Icons.Default.GridView
-        DeviceType.KEYBOARD -> Icons.Default.Piano
-        DeviceType.MIXER -> Icons.Default.Tune
-        DeviceType.GENERIC -> Icons.Default.Usb
-        DeviceType.SYSTEM -> Icons.Default.Computer
+        DeviceMeta.Type.GRID -> Icons.Default.GridView
+        DeviceMeta.Type.KEYBOARD -> Icons.Default.Piano
+        DeviceMeta.Type.MIXER -> Icons.Default.Tune
+        DeviceMeta.Type.GENERIC -> Icons.Default.Usb
+        DeviceMeta.Type.SYSTEM -> Icons.Default.Computer
     }
 
     TextButton(
@@ -46,9 +46,9 @@ fun DeviceCard(name: String, type: DeviceType, onClick: () -> Unit = {}) {
 @Composable
 private fun DeviceCardPreview() {
     PreviewContainer {
-        DeviceCard("Grid device", DeviceType.GRID) {}
-        DeviceCard("Keyboard device", DeviceType.KEYBOARD) {}
-        DeviceCard("Mixer device", DeviceType.MIXER) {}
-        DeviceCard("Generic device", DeviceType.GENERIC) {}
+        DeviceCard("Grid device", DeviceMeta.Type.GRID) {}
+        DeviceCard("Keyboard device", DeviceMeta.Type.KEYBOARD) {}
+        DeviceCard("Mixer device", DeviceMeta.Type.MIXER) {}
+        DeviceCard("Generic device", DeviceMeta.Type.GENERIC) {}
     }
 }

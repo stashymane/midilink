@@ -28,6 +28,6 @@ fun GraphCard(graph: Graph) {
 @Composable
 private fun GraphCardPreview() {
     PreviewContainer {
-        GraphCard(Graph("test", "Test graph", listOf(), listOf()))
+        GraphCard(Graph("test", "Test graph", "test", listOf()))
     }
 }
