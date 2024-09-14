@@ -32,8 +32,7 @@ fun DeviceCard(name: String, type: DeviceMeta.Type, onClick: () -> Unit = {}) {
     TextButton(
         onClick = onClick,
         border = BorderStroke(2.dp, MaterialTheme.colorScheme.border),
-        contentPadding = PaddingValues(8.dp, 0.dp),
-        enabled = false
+        contentPadding = PaddingValues(8.dp, 0.dp)
     ) {
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.padding(8.dp)) {
             Icon(icon, null)

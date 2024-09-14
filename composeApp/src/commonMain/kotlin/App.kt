@@ -25,7 +25,6 @@ import components.Topbar
 import model.Graph
 import model.device.DeviceManager
 import screens.EventLogScreen
-import screens.GraphEditScreen
 import screens.HomeScreen
 import screens.SettingsScreen
 import theme.AppTheme
@@ -85,7 +84,7 @@ fun App() {
                         }
                         composable("edit/{id}") { navEntry ->
                             val id = navEntry.arguments?.getString("id")
-                            GraphEditScreen(graphs.find { it.id == id })
+//                            DeviceScreen(graphs.find { it.id == id })
                         }
                         composable("settings") {
                             SettingsScreen(onUpdate = { appSettings = it })

@@ -4,7 +4,11 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class DeviceMeta(val names: List<String> = listOf(), val type: Type = Type.GENERIC) {
+data class DeviceMeta(
+    val names: List<String> = listOf(),
+    val type: Type = Type.GENERIC,
+    val layout: Container? = null
+) {
     @Serializable
     enum class Type {
         @SerialName("keyboard")

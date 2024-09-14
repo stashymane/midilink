@@ -8,7 +8,7 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.polymorphic
 import kotlinx.serialization.modules.subclass
-import model.MidiNode
+import model.nodes.Node
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertIs
@@ -17,7 +17,7 @@ class NodeTest {
     @Test
     fun testNodeSerialization() {
         val module = SerializersModule {
-            polymorphic(MidiNode::class) {
+            polymorphic(Node::class) {
                 subclass(TestNode::class)
             }
         }
@@ -29,15 +29,15 @@ class NodeTest {
         val updatedValue1 = "foo"
         val updatedValue2 = "bar"
 
-        val node: MidiNode = TestNode().apply {
+        val node: Node = TestNode().apply {
             value1 = updatedValue1
             value2 = updatedValue2
         }
 
         val serialized = json.encodeToString(node)
-        val deserialized = json.decodeFromString<MidiNode>(serialized)
+        val deserialized = json.decodeFromString<Node>(serialized)
 
-        assertIs<MidiNode>(deserialized)
+        assertIs<Node>(deserialized)
         assertIs<TestNode>(deserialized)
         assertEquals(updatedValue1, deserialized.value1)
         assertEquals(updatedValue2, deserialized.value2)
@@ -47,10 +47,10 @@ class NodeTest {
     fun testPluginLoading() {
         val plugins: List<Plugin> = listOf(TestPlugin())
         val serializers = mutableListOf<SerializersModule>()
-        val initializers = mutableListOf<() -> MidiNode>()
+        val initializers = mutableListOf<() -> Node>()
 
         val scope = object : ModuleScope {
-            override fun <T : MidiNode> registerNode(
+            override fun <T : Node> registerNode(
                 module: SerializersModule,
                 init: () -> T,
                 ui: @Composable() (NodeScope<T>.() -> Unit)
@@ -77,7 +77,7 @@ class NodeTest {
 
         val encoded = json.encodeToString(nodes)
         println(encoded)
-        json.decodeFromString<List<MidiNode>>(encoded)
+        json.decodeFromString<List<Node>>(encoded)
 
     }
 }

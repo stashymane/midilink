@@ -3,7 +3,7 @@ package api.plugin
 import api.ModuleScope
 import api.Plugin
 import kotlinx.serialization.modules.SerializersModule
-import model.MidiNode
+import model.nodes.Node
 
 class TestPlugin : Plugin {
     override val id: String = "test"
@@ -11,7 +11,7 @@ class TestPlugin : Plugin {
 
     override fun ModuleScope.load() {
         registerNode(
-            SerializersModule { polymorphic(MidiNode::class, TestNode::class, TestNode.serializer()) },
+            SerializersModule { polymorphic(Node::class, TestNode::class, TestNode.serializer()) },
             ::TestNode
         ) {
 

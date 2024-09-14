@@ -2,5 +2,36 @@
   "names": [
     "Komplete Audio 6 MK2 MIDI"
   ],
-  "type": "generic"
+  "type": "generic",
+  "layout": {
+    "type": "column",
+    "elements": [
+      {
+        "type": "row",
+        "elements": [
+          {
+            "type": "knob",
+            "note": 1
+          },
+          {
+            "type": "pad",
+            "note": 1
+          },
+          {
+            "type": "fader",
+            "note": 2
+          }
+        ]
+      },
+      {
+        "type": "row",
+        "elements": [
+          {
+            "type": "keyboard",
+            "noteRange": "11-15"
+          }
+        ]
+      }
+    ]
+  }
 }
